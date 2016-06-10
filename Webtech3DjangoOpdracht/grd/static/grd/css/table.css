@@ -1,0 +1,135 @@
+/* 
+Generic Styling, for Desktops/Laptops 
+*/
+.table {
+    width: 100%;
+    margin-right: 30px;
+    padding-right: 10px;
+    margin-top: -25px;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+	
+}
+/* Zebra striping */
+tr:nth-of-type(odd) { 
+  background: #eee; 
+}
+th { 
+  background:#fff; 
+  color: #333; 
+  font-weight: bold; 
+  padding:10px 0;
+  font-size:18px;
+  
+}
+td, th { 
+  padding: 6px; 
+  //border: 1px solid #ccc; 
+  text-align: left; 
+  font-size:14px;
+  text-align:center;
+}
+#source-button {
+    visibility:hidden;
+}
+
+.navbar-default {
+    background-color: #3E3F3A!important;   	
+}
+.navbar-brand{
+	padding-top:15px;
+}
+
+.btn-trash{
+	width:20px;
+	height:20px;
+	position:relative;
+	color:#fff;
+	font-size:11px;
+}
+
+.btn-edit{
+	width:20px;
+	height:20px;
+	position:relative;
+	color:#fff;
+	font-size:11px;
+}
+
+.btn .fa{
+	left:16px;
+	top:6px;
+}
+.panel-primary {
+	border:none;
+	margin-top:45px;
+}
+.panel-primary>.panel-heading {
+    color: #fff;
+    background-color: #333;
+    border-color: #333;
+    height:60px;
+}
+.panel-heading {
+    padding: 10px 15px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+	background:#333;
+	text-align:center;	
+}
+	
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	tr { border: 1px solid #ccc; 
+	padding-bottom:20px;}
+	
+	td { 
+		/* Behave  like a "row" */
+		border: none;
+		position: relative;
+		padding-left: 50%; 
+		
+	}
+	
+	td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+	
+	td:nth-of-type(1):before { content: "Username";font-weight:800;font-size:12px;}
+	td:nth-of-type(2):before { content: "Commiter";font-weight:800;font-size:12px;}
+	td:nth-of-type(3):before { content: "Date";font-weight:800;font-size:12px;}
+	td:nth-of-type(4):before { content: "Email"; font-weight:800;font-size:12px;}
+	td:nth-of-type(5):before { content: "Message"; font-weight:800;font-size:12px;}
+	
+	.commit_amount td:nth-of-type(1):before { content: "#";font-weight:800;font-size:12px;}
+	.commit_amount td:nth-of-type(2):before { content: "Repository";font-weight:800;font-size:12px;}
+	.commit_amount td:nth-of-type(3):before { content: "File";font-weight:800;font-size:12px;}
+	.commit_amount td:nth-of-type(4):before { content: "Amount commited"; font-weight:800;font-size:12px;}
+
+	
+
+
+
+
+}

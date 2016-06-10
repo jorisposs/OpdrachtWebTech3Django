@@ -1,0 +1,136 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <title>GRD | Index</title>
+      <!-- Bootstrap Core CSS -->
+      <link rel="stylesheet" type="text/css" href="{% static 'grd/css/bootstrap.min.css' %}" />
+      <!-- Custom CSS -->
+      <link rel="stylesheet" type="text/css" href="{% static 'grd/css/custom.css' %}" />
+      <link rel="stylesheet" type="text/css" href="{% static 'grd/css/table.css' %}" />
+	  <link rel="icon" href="{% static 'grd/favicon.ico' %}" type="image/x-icon" />
+      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+   </head>
+   <body>
+      <!-- Navigation -->
+      <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+         <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <a class="navbar-brand" href="/index/"><span class="glyphicon glyphicon-refresh "></span></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+               <ul class="nav navbar-nav">
+                  <li>
+                     <a href="/index/">Repository</a>
+                  </li>
+                  <li>
+                     <a href="/list/">List</a>
+                  </li>
+                 
+               </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+         </div>
+         <!-- /.container -->
+      </nav>
+      <!-- Page Content -->
+      <div class="container padding-90">
+      <h2 class="text-center">List of commits</h2>
+      <p class="text-center">Here are all the commits for the repositories you specified.</p>
+      <br/>
+      <!-- Nav tabs -->
+      <div class="card">
+         <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#info" aria-controls="info" role="tab" data-toggle="tab">Commits</a></li>
+            <li role="presentation"><a href="#topten" aria-controls="topten" role="tab" data-toggle="tab">Top 10</a></li>
+         </ul>
+         <!-- Tab panes -->
+         <div class="tab-content" style="margin-top:50px">
+            <div role="tabpanel" class="tab-pane active" id="info">
+               <div class="col-md-12">
+                  <table class="table">
+                     <thead style="min-height:40px">
+                        <tr>
+                           <th> Date </th>
+                           <th> Committer </th>
+                           <th> Repository</th>
+                           <th> Email </th>
+                           <th> Message </th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        {% for key, value_list in output.items %}
+                        {% if key == 'info' %}
+                        {% for value in value_list %}
+                        <tr>
+							<td>{{value.date}}</td>
+						   <td>{{value.name}}</td>
+						   <td><a href="https://github.com/{{value.repo}}">{{value.repo}}</a></td>
+                           <td>{{value.email}}</td>
+                           <td>{{value.message}}</td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                        {% endfor %}
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="topten">
+               <div class="col-md-12">
+                
+                     <table class="table commit_amount">
+                        <thead style="min-height:40px">
+                           <tr>
+                              <th class="header"> # <i class="icon-sort"></i></th>
+                              <th class="header"> Repository <i class="icon-sort"></i></th>
+                              <th class="header"> File <i class="icon-sort"></i></th>
+                              <th class="header"> Amount commited<i class="icon-sort"></i></th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           {% for key, value_list in output.items %}
+                           {% if key == 'topten' %}
+                           {% for value in value_list %}
+                           <tr>
+                              <td>{{value.position}}</td>
+                              <td><a href="https://github.com/{{value.repo}}">{{value.repo}}</a></td>
+                              <td>{{value.filename}}</td>
+                              <td>{{value.amount}}</td>
+                           </tr>
+                           {% endfor %}
+                           {% endif %}
+                           {% endfor %}
+                        </tbody>
+                     </table>
+                  </div>
+              
+            </div>
+         </div>
+      </div>
+      <!-- /.container -->
+      <!-- jQuery Version 1.11.1 -->
+      <script src="{% static 'grd/js/jquery.js' %}"></script>
+      <script src="{% static 'grd/js/textbox.js' %}"></script>
+      <!-- Bootstrap Core JavaScript -->
+      <script src="{% static 'grd/js/bootstrap.min.js' %}"></script>
+   </body>
+</html>
